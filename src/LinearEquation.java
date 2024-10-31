@@ -4,14 +4,12 @@ public class LinearEquation {
     private int y1;
     private int y2;
 
-
     public LinearEquation(int x1, int y1, int x2, int y2){
         this.x1 = x1;
         this.x2 = x2;
         this.y1 = y1;
         this.y2 = y2;
     }
-
 
     public double distance(){
         int x = x2 - x1;
@@ -20,12 +18,10 @@ public class LinearEquation {
         return roundedToHundredth(d);
     }
 
-
     public double yIntercept(){
         double b = y1 - (slope() * x1);
         return roundedToHundredth(b);
     }
-
 
     public double slope(){
         int x = x2 - x1;
@@ -33,7 +29,6 @@ public class LinearEquation {
         double m = (double) y / x;
         return roundedToHundredth(m);
     }
-
 
     public String equation(){
         int x = x2 - x1;
@@ -44,13 +39,12 @@ public class LinearEquation {
         String bee = "";
         //String b = "+ " + yIntercept();
 
-
         //slope issues
-        if (y/x == 0){
+        if (y%x == 0 && y/x != 1 && y/x != -1){
             m = y/x + "";
-        } else if (y/x == 1) {
+        } else if ((double)y/x == 1) {
             m = "";
-        } else if (y/x == -1) {
+        } else if ((double)y/x == -1) {
             m = "-";
         } else if (x < 0 && y > 0) {
             String temp = x + "";
@@ -64,7 +58,6 @@ public class LinearEquation {
             m = y + "/" + x;
         }
 
-
         //if y = 0 or b = 0
         if (y == 0 && b == 0){
             str = "y = 0";
@@ -77,7 +70,6 @@ public class LinearEquation {
             return str;
         }
 
-
         if (b < 0){
             bee = "- " + Math.abs(b);
         } else{
@@ -87,7 +79,6 @@ public class LinearEquation {
         return str;
     }
 
-
     public String coordinateForX(double x){
         double y = (x * slope()) + yIntercept();
         y = Math.round(y * 100) / 100.0;
@@ -95,17 +86,15 @@ public class LinearEquation {
         return str;
     }
 
-
-    public String lineInfo(){
+    public String lineInfo(String point1, String point2){
         String str = "";
-        str += "The two points are: " + coordinateForX(x1) + " and " + coordinateForX(x2) + "\n";
+        str += "The two points are: " + point1 + " and " + point2 + "\n";
         str += "The equation of the line between these points is: " + equation() + "\n";
         str += "The y-intercept of this line is: " + yIntercept() + "\n";
         str += "The slope of this line is: " + slope() + "\n";
         str += "The distance between these points is: " + distance() + "\n";
         return str;
     }
-
 
     private double roundedToHundredth(double toRound){
         double rounded = Math.round(toRound * 100) / 100.0;
